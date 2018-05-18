@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head></head>
+
+    <body>
+        <P>Press Control-Space to continue</P>
+
+        <script>
+            window.addEventListener("keydown", event => {
+                if (event.key == " " && event.ctrlKey) {
+                    console.log("Continuing!")
+                }
+            });
+        </script>
+    </body>
+</html>

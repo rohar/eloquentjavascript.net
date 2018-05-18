@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head></head>
+
+    <body oncontextmenu="return false">
+        <a href="https://developer.mozilla.org/">MDN - can't click!</a>
+        <button>Right mouse context menu disabled</button>
+
+        <script>
+            let link = document.querySelector("a");
+            let button = document.querySelector("button");
+
+            link.addEventListener("click", event => {
+                console.log("link - nope.");
+                event.preventDefault();
+            });
+
+            button.addEventListener("mousedown", event => {
+                switch (event.button) {
+                    case 0:
+                        console.log("Left button");
+                        break;
+                    case 1: 
+                        console.log("Middle button");
+                        break;
+                    case 2: 
+                        console.log("Right button");
+                        event.preventDefault();
+                        break;
+                }
+            });
+        </script>
+    </body>
+</html>

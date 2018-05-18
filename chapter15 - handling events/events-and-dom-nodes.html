@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head></head>
+
+    <body>
+        <button>Click me</button>
+        <p>Handler here too.</p>
+
+        <script>
+            let button = document.querySelector("button");
+            let p = document.querySelector("p");
+            button.addEventListener("click", () => {
+                console.log("Button clicked")
+            });
+            p.addEventListener("click", () => {
+                console.log("p clicked")
+            });
+            
+        </script>
+    </body>
+</html>

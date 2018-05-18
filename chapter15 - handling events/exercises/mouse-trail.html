@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head></head>
+
+    <body>
+        <style>
+            .trail {
+                position: absolute;
+                height: 6px; width: 6px;
+                border-radius: 3px;
+                background: teal;
+            }
+            body{
+                height: 300px;
+            }
+        </style>
+
+        <!--div class="trail"></div-->
+
+        <script>
+            const numberOfTrails = 10;
+            let currentTrail = 0;
+            let mouseX = 0;
+            let mouseY = 0;
+            createTrails(numberOfTrails);
+
+            let trails = document.getElementsByClassName("trail");
+            window.addEventListener("mousemove", moved);
+            requestAnimationFrame(animate);                
+
+            function createTrails(numberOfTrails) {
+                for (let i = 0; i < numberOfTrails; i++) {
+                    let div = document.createElement("div");
+                    div.classList.add("trail");
+                    document.body.appendChild(div);
+                }
+            }
+
+            function moved(event) {
+                mouseX = event.clientX;
+                mouseY = event.clientY;
+            }
+
+            function getNewPosition(milliSinceLastMove, speed, objectPos, followPosition) {
+                console.log(`milliSinceLastMove=${milliSinceLastMove}, objectPos=${objectPos}, followPosition=${followPosition}`)
+                let newPos = objectPos;
+                if (followPosition > objectPos) {
+                    newPos += (milliSinceLastMove * speed);
+                    if (newPos > followPosition) {
+                        newPos = followPosition;
+                    }
+                }  else {
+                    newPos -= (milliSinceLastMove * speed);
+                    if (newPos < followPosition) {
+                        newPos = followPosition;
+                    }
+                }
+                
+                console.log(`newPos=${newPos}`);
+                return newPos;
+            }
+
+            function animate(time, lastTime) {
+                let timeDiff = 0;
+
+                if (lastTime != null) {
+                    timeDiff = time - lastTime;
+                }
+                
+                let speedIncrement = 1 / numberOfTrails;
+
+                let followX = mouseX;
+                let followY = mouseY;
+
+                for (let i = 0; i < numberOfTrails; i++) {
+                    let rect = trails[i].getBoundingClientRect();
+                    
+                    let speed = 1 - (i * speedIncrement);
+
+                    trails[i].style.left = getNewPosition(timeDiff, speed, rect.left, followX) + "px";
+                    trails[i].style.top = getNewPosition(timeDiff, speed, rect.top, followY) + "px";
+
+                    followX = rect.left;
+                    followY = rect.top;
+                }
+
+                requestAnimationFrame(newTime => animate(newTime, time));
+            }
+
+
+        </script>
+    </body>
+
+</html>
