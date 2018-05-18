@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head></head>
+
+    <body>
+        <h1>Heading with a <span>span</span> element.</h1>
+        <p>A paragraph with <span>one</span>, <span>two</span>
+        spans.</p>
+
+        <script>
+            function byTagName(node, tagName) {
+                let results = [];
+
+                findNodes(node, tagName.toUpperCase());
+
+                return results;
+
+                function findNodes(node, tagName) {
+                    if (node.nodeType == document.ELEMENT_NODE) {
+                        if (node.nodeName == tagName) {
+                            results.push(node); 
+                        }
+
+                        for (let i = 0; i < node.childNodes.length; i++) {
+                            findNodes(node.childNodes[i], tagName);
+                        }
+                    }
+                }
+            }
+
+            console.log(byTagName(document.body, "h1").length);
+
+            console.log(byTagName(document.body, "span").length);
+
+            let para = document.querySelector("p");
+            console.log(byTagName(para, "span").length);
+
+        </script>
+    </body>
+</html>

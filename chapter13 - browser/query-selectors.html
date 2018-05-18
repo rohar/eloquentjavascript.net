@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head></head>
+
+    <body>
+        <p>And if you go chasing
+            <span class="animal">rabbits</span>
+        </p>
+        <p>And you know you're going to fall</p>
+        <p>Tell 'em a <span class="charcter">hookah smoking
+            <span class="animal">caterpilla</span></span>
+        </p>
+        <p>Has given you the call</p>
+
+        <script>
+            function count(selector) {
+                return document.querySelectorAll(selector).length;
+            }
+            console.log(count("p"));            // All <p> elements
+            console.log(count(".animal"));      // Class animal
+            console.log(count("p .animal"));    // Animal inside of <p>
+            console.log(count("p > .animal"));  // Direct child of <p>
+        </script>
+    </body>
+</html>

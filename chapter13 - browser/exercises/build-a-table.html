@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head></head>
+
+<body>
+    <h1>Mountains</h1>
+
+    <div id="mountains"></div>
+
+    <script>
+        const MOUNTAINS = [
+            { name: "Kilimanjaro", height: 5895, place: "Tanzania" },
+            { name: "Everest", height: 8848, place: "Nepal" },
+            { name: "Mount Fuji", height: 3776, place: "Japan" },
+            { name: "Vaalserberg", height: 323, place: "Netherlands" },
+            { name: "Denali", height: 6168, place: "United States" },
+            { name: "Popocatepetl", height: 5465, place: "Mexico" },
+            { name: "Mont Blanc", height: 4808, place: "Italy/France" }
+        ];
+
+        function createMountainRow(cellType, name, height, place) {
+            let rowNode = document.createElement("tr");
+            
+            let nameCellNode = document.createElement(cellType);
+            nameCellNode.appendChild(document.createTextNode(name));
+
+            let heightCellNode = document.createElement(cellType);
+            heightCellNode.appendChild(document.createTextNode(height));
+            heightCellNode.style.textAlign = "right"; 
+
+            let placeCellNode = document.createElement(cellType);
+            placeCellNode.appendChild(document.createTextNode(place));
+
+            rowNode.appendChild(nameCellNode);
+            rowNode.appendChild(heightCellNode);
+            rowNode.appendChild(placeCellNode);
+
+            return rowNode;
+        }
+
+        let table = document.createElement("table");
+        table.appendChild(createMountainRow("th", "name", "place", "height"));
+
+        // for (let mountain of MOUNTAINS) {
+        //     console.log(`name=${mountain.name}, height=${mountain.height}, place=${mountain.place}`);
+        //     table.appendChild(createMountainRow("td", mountain.name, mountain.height, mountain.place));
+        // }
+        
+        MOUNTAINS.forEach(m => {
+            table.appendChild(createMountainRow("td", m.name, m.height, m.place));
+        })
+            
+        let divNode = document.getElementById("mountains");
+        divNode.appendChild(table);
+
+    </script>
+</body>
+
+</html>
