@@ -43,11 +43,6 @@
         let table = document.createElement("table");
         table.appendChild(createMountainRow("th", "name", "place", "height"));
 
-        // for (let mountain of MOUNTAINS) {
-        //     console.log(`name=${mountain.name}, height=${mountain.height}, place=${mountain.place}`);
-        //     table.appendChild(createMountainRow("td", mountain.name, mountain.height, mountain.place));
-        // }
-        
         MOUNTAINS.forEach(m => {
             table.appendChild(createMountainRow("td", m.name, m.height, m.place));
         })
