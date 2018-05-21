@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<body>
+    <script>
+        fetch("http://eloquentjavascript.net/author", {
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'GET',
+            mode: 'cors'
+        })
+        .then(response => {
+            console.log(response.status);
+
+            console.log(response.headers.get("Context-Type"));
+        });
+    </script>
+</body>
+</html>

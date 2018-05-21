@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<html>
+    <body>
+        <textarea></textarea>
+
+        <script>
+            let textarea = document.querySelector("textarea");
+
+            textarea.addEventListener("keydown", event => {
+                if (event.keyCode == 113) { //F2
+                    replaceSelection(textarea, "Khasekhemwy");
+                    event.preventDefault();
+                }
+            });
+
+            function replaceSelection(field, word) {
+                let from = field.selectionStart, to = field.selectionEnd;
+                field.value = field.value.slice(0, from) 
+                    + word
+                    + field.value.slice(to);
+
+                    // put the cursor after the word
+                    field.selectionStart = from + word.length;
+                    field.selectionEnd = from + word.length;
+            }
+        </script>
+    </body>
+</html>
